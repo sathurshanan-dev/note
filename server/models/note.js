@@ -19,6 +19,6 @@ const note_schema = new mongoose.Schema(
   }
 );
 
-const Note = mongoose.model('Post', note_schema);
+const Note = mongoose.model('Note', note_schema);
 
 export default Note;
