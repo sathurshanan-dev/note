@@ -10,7 +10,14 @@ export const user_api_slice = api_slice.injectEndpoints({
         body: params,
       }),
     }),
+    login: builder.mutation({
+      query: (params) => ({
+        url: `${USERS_URL}/login`,
+        method: 'POST',
+        body: params,
+      }),
+    }),
   }),
 });
 
-export const { useRegisterMutation } = user_api_slice;
+export const { useRegisterMutation, useLoginMutation } = user_api_slice;

@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useRegisterMutation } from '../slices/user_api';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { set_login } from '../slices/auth';
-import { Link } from 'react-router';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import FormContainer from '../components/FormContainer';
+import { useLoginMutation } from '../slices/user_api';
+import { set_login } from '../slices/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router';
 import Message from '../components/Message';
+import FormContainer from '../components/FormContainer';
 
-const Register = () => {
-  const [name, set_name] = useState('');
+const Login = () => {
   const [email, set_email] = useState('');
   const [password, set_password] = useState('');
   const [error, set_error] = useState('');
@@ -20,12 +18,12 @@ const Register = () => {
 
   const { user_info } = useSelector((state) => state.auth);
 
-  const [register, { isLoading }] = useRegisterMutation();
+  const [login, { isLoading }] = useLoginMutation();
 
   const submit_handler = async (event) => {
     event.preventDefault();
     try {
-      const res = await register({ name, email, password }).unwrap();
+      const res = await login({ email, password }).unwrap();
       dispatch(set_login({ ...res }));
       navigate('/');
     } catch (err) {
@@ -41,17 +39,9 @@ const Register = () => {
 
   return (
     <FormContainer>
-      <h1 className="text-center">Register</h1>
+      <h1 className="text-center">Login</h1>
       {error && <Message variant="danger">{error}</Message>}
       <Form onSubmit={submit_handler}>
-        <Form.Group controlId="name" className="my-2">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            value={name}
-            onChange={(event) => set_name(event.target.value)}
-          ></Form.Control>
-        </Form.Group>
         <Form.Group controlId="email" className="my-2">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -74,17 +64,17 @@ const Register = () => {
           className="w-100"
           disabled={isLoading}
         >
-          Create account
+          Continue
         </Button>
       </Form>
       <hr />
       <Row className="py-3">
         <Col className="text-center">
-          Already have an account? <Link to="/login">Login</Link>
+          Don't have an account? <Link to="/register">Register</Link>
         </Col>
       </Row>
     </FormContainer>
   );
 };
 
-export default Register;
+export default Login;
