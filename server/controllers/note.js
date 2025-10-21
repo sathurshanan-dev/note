@@ -2,7 +2,7 @@ import async_handler from '../middleware/async_handler.js';
 import Note from '../models/note.js';
 
 const get_notes = async_handler(async (req, res) => {
-  const notes = await Note.find({});
+  const notes = await Note.find({ user: req.user._id });
   res.json(notes);
 });
 

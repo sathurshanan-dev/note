@@ -1,7 +1,6 @@
 import async_handler from '../middleware/async_handler.js';
 import generate_token from '../utils/generate_token.js';
 import User from '../models/user.js';
-import Note from '../models/note.js';
 
 const login = async_handler(async (req, res) => {
   const { email, password } = req.body;
@@ -49,17 +48,6 @@ const register = async_handler(async (req, res) => {
   }
 });
 
-const get_profile = async_handler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-  if (user) {
-    const posts = await Note.find({ user: req.user._id });
-    res.json(posts);
-  } else {
-    res.status(404);
-    throw new Error('User not found');
-  }
-});
-
 const update_profile = async_handler(async (req, res) => {
   const user = await User.findById(req.user._id);
   if (user) {
@@ -81,4 +69,4 @@ const update_profile = async_handler(async (req, res) => {
   }
 });
 
-export { login, register, get_profile, update_profile };
+export { login, register, update_profile };
