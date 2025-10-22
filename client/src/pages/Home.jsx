@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useNotesQuery } from '../slices/note_api';
 import { Container, Row } from 'react-bootstrap';
-import NoteCard from '../components/NoteCard';
+import Note from '../components/Note';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
@@ -29,7 +29,7 @@ const Landing = () => {
       ) : (
         <Row xs={1} sm={2} md={2} lg={3} xl={4} className="g-4">
           {data.map((note) => (
-            <NoteCard note={note} />
+            <Note note={note} key={note._id} />
           ))}
         </Row>
       )}
