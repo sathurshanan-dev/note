@@ -13,6 +13,16 @@ export const note_api_slice = api_slice.injectEndpoints({
       keepUnusedDataFor: 5,
       providesTags: ['Notes'],
     }),
+    note: builder.query({
+      query: ({ token, id }) => ({
+        url: `${NOTES_URL}/${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      keepUnusedDataFor: 5,
+      providesTags: ['Note'],
+    }),
     editNote: builder.mutation({
       query: ({ token, id, title, content }) => ({
         url: `${NOTES_URL}/${id}`,
@@ -22,7 +32,7 @@ export const note_api_slice = api_slice.injectEndpoints({
         },
         body: { title, content },
       }),
-      invalidatesTags: ['Notes'],
+      invalidatesTags: ['Note'],
     }),
     deleteNote: builder.mutation({
       query: ({ token, id }) => ({
@@ -37,5 +47,9 @@ export const note_api_slice = api_slice.injectEndpoints({
   }),
 });
 
-export const { useNotesQuery, useEditNoteMutation, useDeleteNoteMutation } =
-  note_api_slice;
+export const {
+  useNotesQuery,
+  useNoteQuery,
+  useEditNoteMutation,
+  useDeleteNoteMutation,
+} = note_api_slice;

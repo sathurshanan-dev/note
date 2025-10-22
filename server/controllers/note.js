@@ -9,7 +9,7 @@ const get_notes = async_handler(async (req, res) => {
 const get_note = async_handler(async (req, res) => {
   const note = await Note.findById(req.params.id);
   if (note) {
-    res.json(post);
+    res.json(note);
   } else {
     res.status(404);
     throw new Error('Note not found');
