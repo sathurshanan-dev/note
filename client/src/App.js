@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Login from './pages/Login';
 import EditNote from './pages/EditNote';
 import CreateNote from './pages/CreateNote';
+import Profile from './pages/Profile';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/note/:id/edit" element={<EditNote />} />
           <Route path="/new" element={<CreateNote />} />
+          <Route path="/:username" element={<Profile />} />
         </Routes>
       </main>
     </BrowserRouter>
