@@ -19,9 +19,9 @@ app.use('/api/notes', note_routes);
 
 if (process.env.NODE_ENV === 'production') {
   const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, '/client/dist')));
+  app.use(express.static(path.join(__dirname, '/client/build')));
   app.get('/{*any}', (req, res) =>
-    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   );
 } else {
   app.get('/', (req, res) => {
