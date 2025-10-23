@@ -29,7 +29,7 @@ const NoteCard = ({ note }) => {
           <Card.Title>{note.title}</Card.Title>
           <Card.Text>{note.content}</Card.Text>
           <Stack direction="horizontal" gap={2}>
-            <Button as={Link} to={`/note/${note._id}`}>
+            <Button as={Link} to={`/note/${note._id}/edit`}>
               Edit
             </Button>
             <Button onClick={() => delete_post()} disabled={is_delete_loading}>

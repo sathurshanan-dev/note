@@ -53,7 +53,7 @@ const EditNote = () => {
           <Form onSubmit={submit_handler}>
             {message && <Message variant="danger">{message}</Message>}
             <Form.Group controlId="bio" className="my-2">
-              <Form.Label className="text-center my-3">Edit Post</Form.Label>
+              <Form.Label className="text-center my-3">Edit Note</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Title"
